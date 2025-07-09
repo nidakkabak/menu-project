@@ -18,7 +18,8 @@ export default function MenuViewer({ initialMenu, alternatives }) {
     if (!selectedOption) return;
     const updatedMenu = [...menu];
     const oldMeal = updatedMenu[editingIndex].meals[0];
-    updatedMenu[editingIndex].meals[0] = selectedOption.name;
+     updatedMenu[editingIndex].meals = [selectedOption.name];
+
 
     setMenu(updatedMenu);
     setEditingIndex(null);
