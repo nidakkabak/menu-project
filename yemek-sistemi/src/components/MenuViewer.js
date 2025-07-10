@@ -12,7 +12,7 @@ export default function MenuViewer({ initialMenu, alternatives }) {
     setEditingIndex(index);
     setSelectedCategory("");
     setSelectedOption(null);
-  };
+  };   
 
   const handleSave = () => {
     if (!selectedOption) return;
