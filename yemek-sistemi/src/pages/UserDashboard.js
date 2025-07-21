@@ -1,6 +1,8 @@
 import React from "react";
 import MenuViewer from "../components/MenuViewer";
 import alternatives from "../data/alternatives.json";
+import ChatBot from "../components/ChatBot";
+
 
 export default function UserDashboard() {
  const monthlyMenu = [
@@ -185,5 +187,10 @@ export default function UserDashboard() {
   },
 ];
 
-  return <MenuViewer initialMenu={monthlyMenu} alternatives={alternatives} />;
+ return (
+  <>
+    <MenuViewer initialMenu={monthlyMenu} alternatives={alternatives} />
+    <ChatBot menu={monthlyMenu} />
+  </>
+);
 }
