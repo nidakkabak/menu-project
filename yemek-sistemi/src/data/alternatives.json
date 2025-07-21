@@ -1,0 +1,110 @@
+{
+  "Sandwich": [
+    {
+      "name": "Chicken Avocado Sandwich",
+      "bread": "Tortilla",
+      "ingredients": "Avocado ezmesi, izgara tavuk, marul, domates, ballı hardal"
+    },
+    {
+      "name": "Turkey and Cheese Sandwich",
+      "bread": "Kepekli Dilimli",
+      "ingredients": "Edam peyniri, marul, domates, salatalık, hindi fume, labne"
+    },
+    {
+      "name": "Chicken Caesar Sandwich",
+      "bread": "Normal Dilimli",
+      "ingredients": "Izgara tavuk, kırmızı chedar peyniri, marul, Caesar sos"
+    },
+    {
+      "name": "Classic Sandwich",
+      "bread": "Tortilla",
+      "ingredients": "Haşlanmış tavuk göğsü, hellim, peynir, domates, salatalık, zeytin ezmesi, mısır"
+    },
+    {
+      "name": "Felafel Sandwich",
+      "bread": "Tortilla",
+      "ingredients": "Felafel, tahin sos, mor lahana turşusu, marul"
+    },
+    {
+      "name": "Feta Avocado Sandwich",
+      "bread": "Tortilla",
+      "ingredients": "Avocado ezmesi, beyaz peynir, kuru domates, ızgara mantar, roka, zeytinyağı, kekik"
+    },
+    {
+      "name": "Roasted Red Bell Pepper and Feta Sandwich",
+      "bread": "Beyaz Dilimli",
+      "ingredients": "Közlenmiş Kapya Biber, roka, beyaz peynir, labne, mısır, zeytinyağı, kekik"
+    },
+    {
+      "name": "Chicken Pesto Sandwich",
+      "bread": "Tortilla",
+      "ingredients": "Izgara tavuk, pesto sos, kuru domates, edam peyniri, roka"
+    },
+    {
+      "name": "Pesto and Cheese",
+      "bread": "Normal Dilimli",
+      "ingredients": "Peynir, kuru domates, pesto sos, labne, roka, zeytinyağı, kekik"
+    },
+    {
+      "name": "Creamy Spinach and Chicken",
+      "bread": "Normal Dilimli",
+      "ingredients": "Izgara tavuk, kremalı ıspanak, kuru domates, peynir"
+    },
+    {
+      "name": "Dana Jambon Sandwich",
+      "bread": "Normal Dilimli",
+      "ingredients": "Hellim, dana jambon, domates, salatalık, marul"
+    },
+    {
+      "name": "Beyaz Peynirli Sandwich",
+      "bread": "Kepekli Dilimli",
+      "ingredients": "Maydanozlu beyaz peynir, labne, domates, salatalık"
+    },
+    {
+      "name": "Honey Mustard and Turkey",
+      "bread": "Normal Dilimli",
+      "ingredients": "Hindi fume, ballı hardal, peynir, domates, marul"
+    },
+    {
+      "name": "Club Sandwich",
+      "bread": "Kepekli Dilimli",
+      "ingredients": "Dana jambon, hindi fume, peynir, marul, domates, kornişon turşusu, mayonez"
+    },
+    {
+      "name": "Crispy Chicken Sandwich",
+      "bread": "Tortilla",
+      "ingredients": "Çıtır tavuk, coleslaw, marul"
+    }
+  ],
+  "Salata": [
+    {
+      "name": "Chicken Salad",
+      "bread": "-",
+      "ingredients": "Izgara tavuk, marul, roka, havuç, kapya biber, domates, salatalık",
+      "sauce": "Nar ekşisi, limon, zeytinyağı"
+    },
+    {
+      "name": "Canteen Salad",
+      "bread": "-",
+      "ingredients": "Izgara tavuk, marul, roka, domates, beyaz peynir, kapari turşusu",
+      "sauce": "Balzamik sirke ve hardallı canteen sos"
+    },
+    {
+      "name": "Felafel Salad",
+      "bread": "-",
+      "ingredients": "Marul, roka, domates, havuç, mor lahana turşusu, tahin sos",
+      "sauce": "Limon, zeytinyağı"
+    },
+    {
+      "name": "Feta Salad",
+      "bread": "-",
+      "ingredients": "Marul, roka, salatalık, domates, yeşil zeytin, siyah zeytin, beyaz peynir",
+      "sauce": "Nar ekşisi, limon"
+    },
+    {
+      "name": "Pesto Soslu Soğuk Makarna Salatası",
+      "bread": "-",
+      "ingredients": "Tam tahıllı penne makarna, ızgara tavuk, ızgara mantar, pesto sos, kuru domates, roka, parmesan"
+    }
+  ]
+}
