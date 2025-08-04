@@ -14,31 +14,32 @@ export default function MenuViewer({ initialMenu, alternatives }) {
     setSelectedOption(null);
   };   
 
-  const handleSave = () => {
-    if (!selectedOption) return;
-    const updatedMenu = [...menu];
-    const oldMeal = updatedMenu[editingIndex].meals[0];
-     updatedMenu[editingIndex].meals = [selectedOption.name];
+ const handleSave = () => {
+  if (!selectedOption) return;
 
+  const updatedMenu = [...menu];
+  const oldMeal = updatedMenu[editingIndex].meals[0];
+  
+  updatedMenu[editingIndex].meals = [selectedOption.name];
+  
+  setMenu(updatedMenu);
+  setEditingIndex(null);
 
-    setMenu(updatedMenu);
-    setEditingIndex(null);
-
-    const change = {
-      day: updatedMenu[editingIndex].date,
-      user: "Kullanıcı",
-      oldMeal: oldMeal,
-      newMeal: selectedOption.name,
-      timestamp: new Date().toISOString(),
-    };
-
-    const existingChanges = JSON.parse(localStorage.getItem("mealChanges") || "[]");
-    existingChanges.push(change);
-    localStorage.setItem("mealChanges", JSON.stringify(existingChanges));
-
-    
-    setToastVisible(true);
+  const change = {
+    day: updatedMenu[editingIndex].date,
+    user: "Kullanıcı",
+    oldMeal: oldMeal,
+    newMeal: selectedOption.name,
+    timestamp: new Date().toISOString(),
   };
+
+  const existingChanges = JSON.parse(localStorage.getItem("mealChanges") || "[]");
+  existingChanges.push(change);
+  localStorage.setItem("mealChanges", JSON.stringify(existingChanges));
+  
+  setToastVisible(true);
+};
+
         
   const handleCancel = () => {
     setEditingIndex(null);

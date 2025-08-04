@@ -14,30 +14,47 @@ export default function LoginForm() {
     return errs;
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const validationErrors = validate();
-    setErrors(validationErrors);
+ const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    if (Object.keys(validationErrors).length === 0) {
-      const users = JSON.parse(localStorage.getItem("users")) || [];
+  const validationErrors = validate();
+  setErrors(validationErrors);
 
-      const user = users.find(
-        (user) => user.username === username && user.password === password
-      );
+  if (Object.keys(validationErrors).length === 0) {
+    try {
+      const response = await fetch("http://localhost:5000/api/login", {  // Sunucu adresin
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ username, password })
+      });
 
-      if (user) {
-        
-        if (username.toLowerCase() === "asistan") {
-          navigate("/asistan");
-        } else {
-          navigate("/dashboard", { state: { username } });
-        }
+      const data = await response.json();
+
+  if (data.success) {
+  console.log("✅ Giriş başarılı:", username, password);
+  localStorage.setItem("username", username);
+  localStorage.setItem("password", password);
+  console.log("🟢 localStorage yazıldı");
+
+  setTimeout(() => {
+    if (username.toLowerCase() === "asistan") {
+      navigate("/asistan");
+    } else {
+      navigate("/dashboard", { state: { username } });
+    }
+  }, 100);
       } else {
         setErrors({ form: "Invalid username or password" });
       }
+    } catch (error) {
+      console.error("Login error:", error);
+      alert("Bir hata oluştu, lütfen tekrar deneyin.");
     }
-  };
+  }
+};
+
   
 
   return (

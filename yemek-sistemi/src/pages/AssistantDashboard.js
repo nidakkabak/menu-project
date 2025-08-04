@@ -3,23 +3,52 @@ import React, { useEffect, useState } from "react";
 export default function AssistantDashboard() {
   const [changes, setChanges] = useState([]);
 
+ 
+const fetchChanges = async () => {
+  const username = localStorage.getItem("username");
+  const password = localStorage.getItem("password");
+
+  const res = await fetch("http://localhost:5000/api/get-meal-changes", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ username, password }),
+  });
+
+  const data = await res.json();
+  console.log("get-meal-changes cevabı:", data);
+
+  
+  if (data.success && Array.isArray(data.result)) {
+    const sorted = data.result.sort(
+      (a, b) => new Date(b.timestamp) - new Date(a.timestamp)
+    );
+    setChanges(sorted);
+  } else {
+    setChanges([]);
+  }
+};
+
+ 
   useEffect(() => {
-    const fetchChanges = () => {
-      const stored = JSON.parse(localStorage.getItem("mealChanges") || "[]");
-      stored.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-      setChanges(stored);
-    };
     fetchChanges();
     const iv = setInterval(fetchChanges, 3000);
     return () => clearInterval(iv);
   }, []);
 
-  const handleDelete = index => {
-    const updated = [...changes];
-    updated.splice(index, 1);
-    setChanges(updated);
-    localStorage.setItem("mealChanges", JSON.stringify(updated));
+  const handleDelete = async (index) => {
+    const username = localStorage.getItem("username");
+    const password = localStorage.getItem("password");
+
+    await fetch("http://localhost:5000/api/delete-meal-change", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password, index }),
+    });
+
+    fetchChanges(); 
   };
+  
+
 
   return (
     <div style={{ position: "relative", minHeight: "100vh", overflow: "hidden" }}>

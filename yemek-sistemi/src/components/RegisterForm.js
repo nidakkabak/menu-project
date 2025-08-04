@@ -16,27 +16,40 @@ export default function RegisterForm() {
       errs.passwordConfirm = "Passwords do not match";
     return errs;
   };
+  
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const validationErrors = validate();
-    setErrors(validationErrors);
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  const validationErrors = validate();
+  setErrors(validationErrors);
 
-    if (Object.keys(validationErrors).length === 0) {
-      const users = JSON.parse(localStorage.getItem("users")) || [];
+  if (Object.keys(validationErrors).length === 0) {
+    try {
+      const response = await fetch("http://localhost:5000/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ username, password })
+      });
 
-      if (users.find((user) => user.username === username)) {
-        setErrors({ username: "Username already taken" });
-        return;
+      if (response.ok) {
+        alert("Registration successful! Please login.");
+        navigate("/");
+      } else {
+        const data = await response.json();
+        if (data.error === "Username already taken") {
+          setErrors({ username: "Username already taken" });
+        } else {
+          alert("Registration failed: " + data.message);
+        }
       }
-
-      users.push({ username, password });
-      localStorage.setItem("users", JSON.stringify(users));
-
-      alert("Registration successful! Please login.");
-      navigate("/");
+    } catch (error) {
+      console.error("Registration error:", error);
+      alert("Something went wrong. Please try again later.");
     }
-  };
+  }
+};
 
   return (
     <div style={styles.wrapper}>
