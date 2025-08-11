@@ -14,31 +14,45 @@ export default function MenuViewer({ initialMenu, alternatives }) {
     setSelectedOption(null);
   };   
 
- const handleSave = () => {
+ const handleSave = async () => {
   if (!selectedOption) return;
 
   const updatedMenu = [...menu];
   const oldMeal = updatedMenu[editingIndex].meals[0];
-  
+
   updatedMenu[editingIndex].meals = [selectedOption.name];
-  
+
   setMenu(updatedMenu);
   setEditingIndex(null);
 
   const change = {
     day: updatedMenu[editingIndex].date,
-    user: "Kullanıcı",
+    user: localStorage.getItem("username") || "Kullanıcı",
     oldMeal: oldMeal,
     newMeal: selectedOption.name,
     timestamp: new Date().toISOString(),
   };
 
+  // 1. Mevcut değişiklikleri localStorage’tan oku
   const existingChanges = JSON.parse(localStorage.getItem("mealChanges") || "[]");
   existingChanges.push(change);
   localStorage.setItem("mealChanges", JSON.stringify(existingChanges));
-  
-  setToastVisible(true);
+
+  // 2. API'ye gönder
+  try {
+    await fetch("http://localhost:5000/api/set-meal-changes", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ existingChanges }),  // dikkat: tüm diziyi gönderiyoruz
+    });
+
+    setToastVisible(true);
+  } catch (err) {
+    console.error("Değişiklik sunucuya gönderilemedi:", err);
+    alert("Bir hata oluştu. Lütfen tekrar deneyin.");
+  }
 };
+
 
         
   const handleCancel = () => {

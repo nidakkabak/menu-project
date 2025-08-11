@@ -35,18 +35,28 @@ const fetchChanges = async () => {
     return () => clearInterval(iv);
   }, []);
 
-  const handleDelete = async (index) => {
-    const username = localStorage.getItem("username");
-    const password = localStorage.getItem("password");
+const handleDelete = async (index) => {
+  const username = localStorage.getItem("username");
+  const password = localStorage.getItem("password");
 
-    await fetch("http://localhost:5000/api/delete-meal-change", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, password, index }),
-    });
+  console.log("Delete called with", { username, password, index });
 
+  const res = await fetch("http://localhost:5000/api/delete-meal-change", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ username, password, index: Number(index) }),
+  });
+
+  const data = await res.json();
+
+  if (!data.success) {
+    console.error("Silme işlemi başarısız:", data.message);
+  } else {
+    console.log("Silme başarılı:", data.result);
     fetchChanges(); 
-  };
+  }
+};
+
   
 
 
